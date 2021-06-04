@@ -4,6 +4,8 @@ from ..models import Subject,Course,Enrollment
 
 class SubjectFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='custom_search')
+    subtype = django_filters.CharFilter(method='subtype_search')
+    clstype = django_filters.CharFilter(method='clstype_search')
 
     class Meta:
         model = Subject
@@ -13,6 +15,17 @@ class SubjectFilter(django_filters.FilterSet):
         return queryset.filter(
             Q(subject_name__icontains=value)
         )
+
+    def clstype_search(self, queryset, name, value):
+        return queryset.filter(
+            Q(class_type__icontains=value)
+        )
+
+    def subtype_search(self, queryset, name, value):
+        return queryset.filter(
+            Q(subject_type__icontains=value)
+        )
+
 
 class CourseFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='custom_search')
