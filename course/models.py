@@ -20,6 +20,7 @@ class Subject(models.Model):
     short_description = models.CharField(max_length=300,blank=True,null=True)
     created_at = models.DateTimeField(default=now)
 
+
     def save(self, *args, **kwargs):
         if self.subject_cover:
             im = Image.open(self.subject_cover)
@@ -51,6 +52,8 @@ class Course(models.Model):
     duration = models.CharField(max_length=20, null=True, blank=True)
     is_enrolled = models.BooleanField(default=False)
     is_freeze = models.BooleanField(default=False)
+
+
 
     def save(self, *args, **kwargs):
         if self.course_cover:
