@@ -9,7 +9,7 @@ class SubjectFilter(django_filters.FilterSet):
 
     class Meta:
         model = Subject
-        fields = ['search']
+        fields = ['search','subtype','clstype']
 
     def custom_search(self,queryset,name,value):
         return queryset.filter(
