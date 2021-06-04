@@ -62,6 +62,9 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
     address = models.CharField(max_length=500, null=True, blank=True)
+    telegram_number = models.CharField(max_length=12,null=True)
+    district = models.CharField(max_length=255,null=True)
+
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
