@@ -63,6 +63,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_teacher = models.BooleanField(default=False)
     address = models.CharField(max_length=500, null=True, blank=True)
     telegram_number = models.CharField(max_length=12,null=True)
+    parent_number = models.CharField(max_length=12,null=True)
     district = models.CharField(max_length=255,null=True)
 
 
