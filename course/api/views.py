@@ -469,7 +469,7 @@ def DeleteSubject(request,pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def SubjectList(request):
-    subjects = Subject.objects.all()
+    subjects = Subject.objects.all().order_by('-id')
     filterset = SubjectFilter(request.GET, queryset=subjects)
     if filterset.is_valid():
          queryset = filterset.qs
