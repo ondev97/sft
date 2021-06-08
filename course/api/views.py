@@ -8,7 +8,7 @@ from account.models import User
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes, parser_classes
-from course.models import Course, Module, Enrollment, Coupon, Subject, ModuleFile, Payment, Zoom
+from course.models import Course, Module, Enrollment, Coupon, Subject, ModuleFile, Payment, Zoom, CKEditor5
 from account.models import TeacherProfile,StudentProfile
 from django.db.models import Q
 from rest_framework.pagination import PageNumberPagination
@@ -23,7 +23,7 @@ from course.api.serializer import (CourseSerializer,
                                    CouponSerializer,
                                    SubjectSerializer,
                                    SerializerForCourse,
-                                   SubjectViewSerializer, ModuleFileSerializer, ZoomSerializer)
+                                   SubjectViewSerializer, ModuleFileSerializer, ZoomSerializer, CKEditor5Serializer)
 from rest_framework.generics import( ListAPIView,
                                      RetrieveAPIView,
                                      CreateAPIView,
@@ -771,3 +771,13 @@ def GetZoomMeeting(request,pk):
     meeting = Zoom.objects.get(module_id=pk)
     serializer = ZoomSerializer(meeting)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def Upload(request):
+    ck = CKEditor5.objects.create(upload=request.FILES['upload'])
+    cks = CKEditor5Serializer(ck)
+    return Response({
+        "uploaded": True,
+        "url": cks.data['upload']
+    })

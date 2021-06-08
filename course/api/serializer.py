@@ -138,3 +138,8 @@ class ZoomSerializer(serializers.ModelSerializer):
 
         depth = 1
 
+
+class CKEditor5Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = CKEditor5
+        fields = "__all__"

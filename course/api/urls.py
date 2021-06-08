@@ -68,5 +68,11 @@ urlpatterns = [
     path('updatezoom/<int:pk>/', views.UpdateZoomMeeting, name='update_zoom'),
     path('deletezoom/<int:pk>/', views.DeleteZoomMeeting, name='zoom_module'),
     path('viewzoom/<int:pk>/', views.GetZoomMeeting, name='view_zoom'),
+
+    # ck editor
+
+    path('uploads/', views.Upload, name='uploads'),
+
+
 ]
 
