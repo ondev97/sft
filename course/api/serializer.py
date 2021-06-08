@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from course.models import Course, Module, Enrollment, Coupon, Subject, ModuleFile, Zoom
+from course.models import Course, Module, Enrollment, Coupon, Subject, ModuleFile, Zoom, CKEditor5
 from account.models import TeacherProfile
 
 
