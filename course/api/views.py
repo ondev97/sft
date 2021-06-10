@@ -326,6 +326,31 @@ def Students(request,pk):
         return paginator.get_paginated_response(serializer.data)
     return Response({"message": "not found"}, status=404)
 
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def Students_report(request,pk):
+    course = Course.objects.get(id=pk)
+    courses_enrolled = Enrollment.objects.filter(course=course).order_by('-id')
+    student_ids = []
+    for c in courses_enrolled:
+        if c.student.id not in student_ids:
+            student_ids.append(c.student.id)
+    students = StudentProfile.objects.filter(id__in=student_ids)
+    # filterset = StudentFilter(request.GET, queryset=students)
+    # if filterset.is_valid():
+    #     queryset = filterset.qs
+    #     paginator = PageNumberPagination()
+    #     paginator.page_size = 10
+    #     result_page = paginator.paginate_queryset(queryset, request)
+    serializer = StudentProfileSerializer(students,many=True)
+    for i in range(len(serializer.data)):
+        serializer.data[i]['user'].pop('password')
+    return Response(serializer.data)
+    # return Response({"message": "not found"}, status=404)
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def DashboardDetails(request):

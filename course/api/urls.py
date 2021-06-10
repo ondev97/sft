@@ -22,6 +22,7 @@ urlpatterns = [
     path('enrolledpayment/',views.SavePayments,name='save_payments'),
     path('unenroll/<int:cid>/<int:sid>/',views.Unenroll,name='unenroll'),
     path('freenroll/<int:cid>/<int:sid>/',views.FreeEnroll,name='freenroll'),
+    path('stureport/<int:pk>/',views.Students_report,name='stureport'),
 
     # Urls for modules
     path('createmodule/<int:pk>/',views.CreateModule,name='create_module'),
