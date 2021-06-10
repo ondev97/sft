@@ -20,7 +20,7 @@ from django.conf import settings
 from django.urls import path,include
 
 
-admin.site.site_header = "Hdolset Administration"
+admin.site.site_header = "SFTLANKA Administration"
 admin.site.site_title = "Administration"
 admin.site.index_title = "Welcome to Administration"
 
