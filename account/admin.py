@@ -80,7 +80,7 @@ class StaffProxyModelAdmin(UserAdmin):
 
 
     search_fields = ['email', 'username']
-    list_display = ('email', 'username', 'telegram_number', 'district', 'phone_no', 'parent_number')
+    list_display = ('email', 'username', 'telegram_number', 'district', 'phone_no', 'parent_number','address')
     #actions = ["export_as_csv"]
     actions = [export_as_csv_action("CSV Export", fields=['email', 'username', 'telegram_number', 'district', 'phone_no', 'parent_number','address'])]
 
