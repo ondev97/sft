@@ -53,6 +53,7 @@ urlpatterns = [
     path('mysubjects_stu/',views.MySubjects,name='my_subjects_stu'),
     path('latestsub/',views.LatestSubjects,name='latest_subjects'),
     path('indexsub/', views.SubjectListIndex, name='index_subjects'),
+    path('freesubjects/', views.freesubjects, name='free_subjects'),
 
     # Urls for counting
 
