@@ -54,6 +54,9 @@ urlpatterns = [
     path('latestsub/',views.LatestSubjects,name='latest_subjects'),
     path('indexsub/', views.SubjectListIndex, name='index_subjects'),
     path('freesubjects/', views.freesubjects, name='free_subjects'),
+    path('freecourses/<int:pk>/', views.freecoursesinthesubject, name='free_courses'),
+    path('freemodules/<int:pk>/', views.FreeGetModules, name='free_modules'),
+    path('freemodulefiles/<int:pk>/', views.FreeGetModuleFiles, name='free_module_files'),
 
     # Urls for counting
 

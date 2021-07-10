@@ -800,3 +800,43 @@ def freesubjects(request):
     subjects = Subject.objects.filter(subject_type="free")
     serializer = SubjectViewSerializer(subjects,many=True)
     return Response(serializer.data,status=200)
+
+
+@api_view(['GET'])
+def freecoursesinthesubject(request,pk):
+    subject = Subject.objects.get(id=pk)
+    courses = Course.objects.filter(subject=subject).order_by('-id')
+    filterset = CourseFilter(request.GET, queryset=courses)
+    if filterset.is_valid():
+        queryset = filterset.qs
+    paginator = PageNumberPagination()
+    paginator.page_size = 5
+    result_page = paginator.paginate_queryset(queryset, request)
+    serializer = SerializerForCourse(result_page, many=True)
+    i = 0
+    for d in serializer.data:
+        e = Enrollment.objects.filter(course__id=d['id'], student__user=request.user)
+        if e:
+            serializer.data[i]['is_enrolled'] = True
+        i = i+1
+
+    return paginator.get_paginated_response(serializer.data)
+
+
+@api_view(['GET'])
+def FreeGetModuleFiles(request,pk):
+    files = ModuleFile.objects.filter(module_id=pk)
+    serializer = ModuleFileSerializer(files, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def FreeGetModules(request,pk):
+    course = Course.objects.get(id=pk)
+    user = User.objects.get(id=request.user.id)
+    if user.is_teacher == False:
+        e = Enrollment.objects.filter(course=course, student__user=user)
+        if not e:
+            return Response({"message":"You have not enrolled for this course"}, status=403)
+    module = Module.objects.filter(course=course).order_by('id')
+    serializer = ModuleSerializer(module, many=True)
+    return Response(serializer.data)
