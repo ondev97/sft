@@ -840,3 +840,8 @@ def FreeGetModules(request,pk):
     module = Module.objects.filter(course=course).order_by('id')
     serializer = ModuleSerializer(module, many=True)
     return Response(serializer.data)
+
+
+class FreeEnrolledCourse(RetrieveAPIView):
+    serializer_class = (EnrolledCourseSerializer)
+    queryset = Course.objects.all()

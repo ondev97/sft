@@ -10,6 +10,7 @@ urlpatterns = [
     path('createcourse/<int:pk>/<int:upk>/',views.CreateCourse,name='create_course'),
     path('updatecourse/<int:pk>/',views.UpdateCourse.as_view(),name='update_course'),
     path('viewcourse/<int:pk>/',views.ViewEnrolledCourse.as_view(),name='view_course'),
+    path('freeviewcourse/<int:pk>/',views.FreeEnrolledCourse.as_view(),name='view_free_course'),
     path('deletecourse/<int:pk>/',views.DeleteCourse,name='delete_course'),
     path('enrollcourse/<int:pk>/<int:upk>/',views.EnrollCourse,name='enroll_course'),
     path('mycourses/',views.MyCourses,name='mycourses'),
