@@ -832,11 +832,11 @@ def FreeGetModuleFiles(request,pk):
 @api_view(['GET'])
 def FreeGetModules(request,pk):
     course = Course.objects.get(id=pk)
-    user = User.objects.get(id=request.user.id)
-    if user.is_teacher == False:
-        e = Enrollment.objects.filter(course=course, student__user=user)
-        if not e:
-            return Response({"message":"You have not enrolled for this course"}, status=403)
+    # user = User.objects.get(id=request.user.id)
+    # if user.is_teacher == False:
+    #     e = Enrollment.objects.filter(course=course, student__user=user)
+    #     if not e:
+    #         return Response({"message":"You have not enrolled for this course"}, status=403)
     module = Module.objects.filter(course=course).order_by('id')
     serializer = ModuleSerializer(module, many=True)
     return Response(serializer.data)
