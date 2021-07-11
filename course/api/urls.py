@@ -51,6 +51,7 @@ urlpatterns = [
     path('teachersubject/',views.TeacherSubject,name='teacher_subject'),
     path('courses/<int:pk>/',views.CoursesIntheSubject,name='course_in_subject'),
     path('subject_stu/<int:pk>/',views.ViewSubjectStudent,name='subject_stu'),
+    path('freesubject_stu/<int:pk>/',views.FreeSubjectStudent,name='free_ubject_stu'),
     path('mysubjects_stu/',views.MySubjects,name='my_subjects_stu'),
     path('latestsub/',views.LatestSubjects,name='latest_subjects'),
     path('indexsub/', views.SubjectListIndex, name='index_subjects'),

@@ -845,3 +845,11 @@ def FreeGetModules(request,pk):
 class FreeEnrolledCourse(RetrieveAPIView):
     serializer_class = (EnrolledCourseSerializer)
     queryset = Course.objects.all()
+
+
+
+@api_view(['GET'])
+def FreeSubjectStudent(request,pk):
+    subject = Subject.objects.get(id=pk)
+    serializer = SubjectSerializer(subject)
+    return Response(serializer.data)
