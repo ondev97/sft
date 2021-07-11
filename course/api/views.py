@@ -813,12 +813,12 @@ def freecoursesinthesubject(request,pk):
     paginator.page_size = 5
     result_page = paginator.paginate_queryset(queryset, request)
     serializer = SerializerForCourse(result_page, many=True)
-    i = 0
-    for d in serializer.data:
-        e = Enrollment.objects.filter(course__id=d['id'], student__user=request.user)
-        if e:
-            serializer.data[i]['is_enrolled'] = True
-        i = i+1
+    # i = 0
+    # for d in serializer.data:
+    #     e = Enrollment.objects.filter(course__id=d['id'], student__user=request.user)
+    #     if e:
+    #         serializer.data[i]['is_enrolled'] = True
+    #     i = i+1
 
     return paginator.get_paginated_response(serializer.data)
 
