@@ -17,8 +17,8 @@ class Subject(models.Model):
                                       default="subject_images/default.png")
     description = models.CharField(max_length=500, null=True, blank=True)
     author = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE, null=True, default=None)
-    subject_type = models.CharField(max_length=100, null=True, blank=True)
-    class_type = models.CharField(max_length=10, null=True, blank=True)
+    subject_type = models.CharField(max_length=255, null=True, blank=True)
+    class_type = models.CharField(max_length=255, null=True, blank=True)
     short_description = models.CharField(max_length=300, blank=True, null=True)
     created_at = models.DateTimeField(default=now)
 
